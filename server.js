@@ -26,7 +26,7 @@ app.get('/api/animals/:id', (req, res, next) => {
 app.post('/api/animals', (req, res, next) => {
   Animal.create(req.body)
     .then(animal => {
-      res.join(animal);
+      res.send(animal);
     })
     .catch(next);
 });
