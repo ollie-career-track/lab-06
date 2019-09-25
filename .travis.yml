@@ -7,4 +7,5 @@ branches:
 script:
   - npm run lint
   - npm test
-
+services:
+  - mongodb
