@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "jest": "jest",
+    "test": "npm run jest -- --coverage",
+    "test:watch": "npm run jest -- --watchAll",
+    "test:verbose": "npm run test -- --verbose",
     "start": "node server.js",
-    "test": "jest --verbose",
-    "test-watch": "jest --verbose --watchAll",
-    "lint": "eslint '**/*.js'"
+    "start:watch": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
