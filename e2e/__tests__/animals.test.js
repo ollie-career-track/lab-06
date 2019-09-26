@@ -3,7 +3,7 @@ const db = require('../db');
 
 describe('animals api', () => {
   beforeEach(() => {
-    return db.dropCollection('animal');
+    return db.dropCollection('animals');
   });
 
   const octopus = {
@@ -37,7 +37,7 @@ describe('animals api', () => {
       });
   });
 
-  it.skip('gets an animal by ID', () => {
+  it('gets an animal by ID', () => {
     return postAnimal(octopus)
       .then(animal => {
         return request.get(`/api/animals/${animal._id}`)
@@ -48,11 +48,11 @@ describe('animals api', () => {
       });
   });
 
-  it.skip('gets a list of animals', () => {
+  it('gets a list of animals', () => {
     return Promise.all([
-      postAnimal({ name: 'octo 1', hasTail: false }),
-      postAnimal({ name: 'octo 2', hasTail: false }),
-      postAnimal({ name: 'octo 3', hasTail: false }),
+      postAnimal({ name: 'octo 1', limbs: 8 }),
+      postAnimal({ name: 'octo 2', limbs: 8 }),
+      postAnimal({ name: 'octo 3', limbs: 8 }),
     ])
       .then(() => {
         return request
@@ -64,21 +64,21 @@ describe('animals api', () => {
       });
   });
 
-  it.skip('updates an animal', () => {
+  it('updates an animal', () => {
     return postAnimal(octopus)
       .then(animal => {
-        animal.hasTail = true;
+        animal.limbs = 4;
         return request
           .put(`/api/animals/${animal._id}`)
           .send(animal)
           .expect(200);
       })
       .then(({ body }) => {
-        expect(body.hasTail).toBe(true);
+        expect(body.limbs).toBe(4);
       });
   });
 
-  it.skip('deletes an animal', () => {
+  it('deletes an animal', () => {
     return postAnimal(octopus)
       .then(animal => {
         return request
